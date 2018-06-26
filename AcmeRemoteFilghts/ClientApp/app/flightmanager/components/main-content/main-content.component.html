@@ -1,0 +1,55 @@
+<mat-card>
+    <mat-card-header>
+        <div mat-card-avatar class="example-header-image"></div>
+        <mat-card-title>
+            <h2>
+              Flights table
+            </h2>
+        </mat-card-title>
+      
+    </mat-card-header>
+    <mat-card-content>
+      
+        <mat-table #table [dataSource]="dataSource" class="mat-elevation-z8">
+
+            <ng-container matColumnDef="id">
+                <mat-header-cell *matHeaderCellDef> Flight No. </mat-header-cell>
+                <mat-cell *matCellDef="let flight"> {{flight.id}} </mat-cell>
+            </ng-container>
+
+            <!-- Name Column -->
+            <ng-container matColumnDef="cityFrom">
+                <mat-header-cell *matHeaderCellDef> City From </mat-header-cell>
+                <mat-cell *matCellDef="let flight"> {{flight.cityFrom.cityName}} </mat-cell>
+            </ng-container>
+
+            <!-- Weight Column -->
+            <ng-container matColumnDef="cityTo">
+                <mat-header-cell *matHeaderCellDef> City To </mat-header-cell>
+                <mat-cell *matCellDef="let flight"> {{flight.cityTo.cityName}} </mat-cell>
+            </ng-container>
+
+            <!-- Symbol Column -->
+            <ng-container matColumnDef="departTime">
+                <mat-header-cell *matHeaderCellDef> Depart Time </mat-header-cell>
+                <mat-cell *matCellDef="let flight">
+                    {{flight.departTime | date:'hh:mma'}}<br />
+                    {{flight.departTime | date:'dd-MM-yyyy'}}
+
+                </mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="availableSeats">
+                <mat-header-cell *matHeaderCellDef> Available Seats </mat-header-cell>
+                <mat-cell *matCellDef="let flight">
+                    {{flight.availableSeats}} 
+
+                </mat-cell>
+            </ng-container>
+
+
+             
+            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+            <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+        </mat-table>
+  </mat-card-content>
+</mat-card>

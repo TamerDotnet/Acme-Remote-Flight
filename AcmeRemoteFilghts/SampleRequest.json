@@ -1,0 +1,92 @@
+﻿[
+  {
+    "cityFrom": {
+      "cityName": "Melbourne",
+      "id": 1
+    },
+    "cityTo": {
+      "cityName": "Geelong",
+      "id": 2
+    },
+    "departTime": "2018-01-15T09:00:00",
+    "arriveTime": "2018-01-15T10:00:00",
+    "maxPassangers": 8,
+    "availableSeats": 3,
+    "id": 1005
+  },
+  {
+    "cityFrom": {
+      "cityName": "Melbourne",
+      "id": 1
+    },
+    "cityTo": {
+      "cityName": "Ballarat",
+      "id": 3
+    },
+    "departTime": "2018-06-01T09:00:00",
+    "arriveTime": "2018-06-01T10:00:00",
+    "maxPassangers": 10,
+    "availableSeats": 10,
+    "id": 2002
+  },
+  {
+    "cityFrom": {
+      "cityName": "Melbourne",
+      "id": 1
+    },
+    "cityTo": {
+      "cityName": "Bendigo",
+      "id": 4
+    },
+    "departTime": "2018-06-01T11:00:00",
+    "arriveTime": "2018-06-01T11:00:00",
+    "maxPassangers": 8,
+    "availableSeats": 8,
+    "id": 2003
+  },
+  {
+    "cityFrom": {
+      "cityName": "Ballarat",
+      "id": 3
+    },
+    "cityTo": {
+      "cityName": "Bendigo",
+      "id": 4
+    },
+    "departTime": "2018-06-02T00:00:00",
+    "arriveTime": "2018-06-02T13:00:00",
+    "maxPassangers": 7,
+    "availableSeats": 7,
+    "id": 2004
+  },
+  {
+    "cityFrom": {
+      "cityName": "Geelong",
+      "id": 2
+    },
+    "cityTo": {
+      "cityName": "Ballarat",
+      "id": 3
+    },
+    "departTime": "2018-06-03T14:00:00",
+    "arriveTime": "2018-06-03T03:00:00",
+    "maxPassangers": 1,
+    "availableSeats": 1,
+    "id": 2005
+  },
+  {
+    "cityFrom": {
+      "cityName": "Bendigo",
+      "id": 4
+    },
+    "cityTo": {
+      "cityName": "Ballarat",
+      "id": 3
+    },
+    "departTime": "2018-06-03T15:00:00",
+    "arriveTime": "2018-06-03T16:00:00",
+    "maxPassangers": 12,
+    "availableSeats": 12,
+    "id": 2006
+  }
+] 

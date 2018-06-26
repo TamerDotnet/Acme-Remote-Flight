@@ -1,0 +1,4 @@
+1- Application has been develped using Visual studio 2017
+2- defaulted setup for the API http://localhost:3235 which can be changed from launchsettings.json
+3- used LocalDb as a data store, file can be found under app_data, connection string will work with localdb sql 2012
+4- developed angular client application to the api which require to restore packages.
