@@ -1,5 +1,5 @@
 # Acme-Remote-Flight
-Acme Remote Flights is sample projects for a helicopter flight operator which specialises in transporting passengers to remote areas.
+Acme Remote Flights is sample project for a helicopter flight operator which specialises in transporting passengers to remote areas.
 
 The flights all operate within the same time zone. The same flights repeat every day of the year.
 
