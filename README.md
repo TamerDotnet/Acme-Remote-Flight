@@ -10,4 +10,8 @@ This project created as a proof of concept to implement best practices around SO
 Provides a layered architecture model based on Domain Driven Design.
 
 Designed as modular and extensible. Provides infrastructure to build your own modules too.
+
+A Sample Main page built with Angular - Material design as showing below:
+
+![alt test](https://github.com/TamerDotnet/Acme-Remote-Flight/blob/master/Acme_ClientApp.png)
  
