@@ -1,0 +1,50 @@
+<h2 mat-dialog-title>
+    Flight Details
+</h2>
+
+<mat-dialog-content>
+    <div class="example-container">
+        <mat-form-field>
+            <input matInput [matDatepicker]="dateFrom" placeholder="Depart Date" [(ngModel)]="flight.departTime">
+            <mat-datepicker-toggle matSuffix [for]="dateFrom"></mat-datepicker-toggle>
+            <mat-datepicker #dateFrom></mat-datepicker>
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput [matDatepicker]="dateTo" placeholder="Arrival Date" [(ngModel)]="flight.arriveTime">
+            <mat-datepicker-toggle matSuffix [for]="dateTo"></mat-datepicker-toggle>
+            <mat-datepicker #dateTo></mat-datepicker>
+        </mat-form-field>
+        <mat-form-field>
+            <mat-select placeholder="City From" [(ngModel)]="flight.cityFrom.id" name="cityFrom">
+                <mat-option *ngFor="let city of cityList" [value]="city.id">
+                    {{city.cityName}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-select placeholder="City To" [(ngModel)]="flight.cityTo.id" name="cityTo">
+                <mat-option *ngFor="let city of cityList" [value]="city.id">
+                    {{city.cityName}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-select [(value)]="selected" placeholder="Maximum Passangers" [(ngModel)]="flight.maxPassangers" name="maxPassangers">
+                <mat-option value="5">5</mat-option>
+                <mat-option value="10">10</mat-option>
+                <mat-option value="20">20</mat-option>
+            </mat-select>
+        </mat-form-field>
+    </div>
+
+</mat-dialog-content>
+<mat-dialog-actions>
+    <button mat-button color="primary" (click)="saveFlightDetails(flight)">
+        <mat-icon></mat-icon>Save
+    </button>
+    <button mat-button color="primary" (click)="closeDialog()">
+        <mat-icon></mat-icon>Cancel
+    </button>
+</mat-dialog-actions>

@@ -7,9 +7,9 @@
     <span class="example-spacer"></span>
     <button mat-button [matMenuTriggerFor]="menu">
         <mat-icon>more_vert</mat-icon>
-    </button>
+    </button>   
     <mat-menu #menu="matMenu">
-        <button mat-menu-item>New Flight</button>
+        <button mat-menu-item (click)="openFlightDetailsDialog()" >New Flight</button>
     </mat-menu>
 
 </mat-toolbar>

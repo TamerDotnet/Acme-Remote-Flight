@@ -39,5 +39,47 @@ namespace AcmeRemoteFilghts.DataLayer.Repositories
                   .OrderBy(x => x.Id)
                   .ToList();   // Execute the Query
          }
+        //GetAllFlightsWithBookings
+        public ICollection<Flight> GetAllFlightsByDate(DateTime StartDate, DateTime EndDate)
+        {
+            //1- Get flights based on date range 
+            IQueryable<Flight> query = this._flightRepository.GetFlightsByDate(StartDate, EndDate);
+
+            return query.GetAllFlightsWithBookings()  // Flights with bookings
+                  .Union(query.GetFlightsWithNoBookings())       // union with Flights have no bookings at all
+                  .Distinct()
+                  .OrderBy(x => x.Id)
+                  .ToList();   // Execute the Query
+        }
+        public Flight GetExistingFlight(int FlightId)
+        {
+            return this._flightRepository.GetById(FlightId);
+        }
+        public Flight InsertFlight(Flight flight)
+        {
+            if (flight == null)
+                throw new ArgumentNullException(nameof(flight));
+
+            this._flightRepository.Insert(flight);
+            return flight;
+        }
+
+        public Flight UpdateFlight(Flight flight)
+        {
+            if (flight == null)
+                throw new ArgumentNullException(nameof(flight));
+
+            this._flightRepository.Update(flight);
+            return flight;
+        }
+
+        public void DeleteFlight(Flight flight)
+        {
+            if (flight == null)
+                throw new ArgumentNullException(nameof(flight));
+
+            this._flightRepository.Delete(flight);
+
+        }
     }
 }

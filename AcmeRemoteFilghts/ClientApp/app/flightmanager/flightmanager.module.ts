@@ -12,6 +12,9 @@ import { HttpClientModule } from '@angular/common/http';
 import { FlightmanagerAppComponent } from './flightmanager-app.component';
 import { MaterialModule } from '../shared/material/material.module';
 import { FlightService } from './services/flight.service';
+import { FlightDetailsDialogComponent } from './components/flight-details-dialog/flight-details-dialog.component';
+import { CityService } from './services/city.service';
+import { MAT_DATE_LOCALE } from '@angular/material';
  
 
 let routes: Routes = [
@@ -42,12 +45,18 @@ let routes: Routes = [
         FlightmanagerAppComponent,
         ToolbarComponent,
         MainContentComponent,
-        SidenavComponent 
+        SidenavComponent,
+        FlightDetailsDialogComponent 
     ],
     providers: [
-        FlightService
+        FlightService,
+        CityService,
+        { provide: MAT_DATE_LOCALE, useValue: 'en-AU' }
       ],
     entryComponents: [
-     ]
+        FlightDetailsDialogComponent
+    ],
+
+    
 })
 export class FlightmanagerModule { }

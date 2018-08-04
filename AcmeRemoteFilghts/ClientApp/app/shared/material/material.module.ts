@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import {
+    MAT_DIALOG_DATA,
     MatAutocompleteModule,
     MatButtonModule,
     MatButtonToggleModule,

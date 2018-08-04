@@ -8,6 +8,24 @@ namespace AcmeRemoteFilghts.DataLayer.Repositories
 {
     public static  class JourneyExtention
     {
+        public static IQueryable<Flight> GetAllFlightsWithBookings(this IQueryable<Flight> query)
+        {
+            return query.Where(f => f.Bookings.Count() >0)
+                        .Select(f => new Flight()
+                        {
+                            Id = f.Id,
+                            ArriveTime = f.ArriveTime,
+                            Bookings = f.Bookings,
+                            CityFrom = f.CityFrom,
+                            CityFromId = f.CityFromId,
+                            CityTo = f.CityTo,
+                            CityToId = f.CityToId,
+                            DepartTime = f.DepartTime,
+                            MaxPassangers = f.MaxPassangers,
+                            AvailableSeats = f.MaxPassangers - f.Bookings.Sum(b => b.NoTickets)
+                        });
+        }
+
         public static IQueryable<Flight> GetAvailableFlightsWithBookings(this IQueryable<Flight> query, int NumPassangers)
         {
             return query.Where(f=>f.Bookings.Sum(b => b.NoTickets) + NumPassangers <= f.MaxPassangers)

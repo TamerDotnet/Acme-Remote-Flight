@@ -1,5 +1,6 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { MatDialog } from '@angular/material';
+import { FlightDetailsDialogComponent } from '../flight-details-dialog/flight-details-dialog.component';
 
 @Component({
   selector: 'app-toolbar',
@@ -14,11 +15,12 @@ export class ToolbarComponent implements OnInit {
 
   ngOnInit() {
   }
-  //openAddUnitDialog(): void {
-  //    this.dialog.open(NewUnitDialogComponent, {
 
-  //        width: '450',
-  //    })
-  //}
+
+  openFlightDetailsDialog(): void {
+      this.dialog.open(FlightDetailsDialogComponent, {
+          width: '50%',
+      })
+  }
 
 }

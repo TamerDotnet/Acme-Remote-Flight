@@ -2,9 +2,17 @@
     <mat-card-header>
         <div mat-card-avatar class="example-header-image"></div>
         <mat-card-title>
-            <h2>
-              Flights table
-            </h2>
+            <div style="float:left">
+                <h2>
+                    Flights table
+                </h2>
+            </div>
+            <div style="float:right; width:100%">
+                <button mat-button (click)='filterFlights()'>
+                    {{showAvailableFlights ? 'Show Available' : 'Show All'}} Flights
+                </button>
+            </div>
+
         </mat-card-title>
       
     </mat-card-header>
@@ -44,6 +52,7 @@
                     {{flight.availableSeats}} 
 
                 </mat-cell>
+
             </ng-container>
 
 

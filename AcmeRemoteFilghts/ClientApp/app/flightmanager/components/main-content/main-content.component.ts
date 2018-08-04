@@ -10,20 +10,46 @@ import { FlightService } from '../../services/flight.service';
 })
 export class MainContentComponent implements OnInit {
     public flights: Flight[];
+    public filteredFlights: Flight[]; 
+
+    private _showAvailableFlights: boolean;
+    get showAvailableFlights(): boolean {
+        return this._showAvailableFlights;
+    }
+
+    set showAvailableFlights(value: boolean) {
+        this._showAvailableFlights = value; 
+    }
+
     displayedColumns = ['id', 'cityFrom', 'cityTo', 'departTime','availableSeats'];
     dataSource: MatTableDataSource<Flight>;
 
   constructor(private flightService: FlightService) { }
 
-  ngOnInit() {
-       this.flightService.getFlights().subscribe(data => {
-   
+  ngOnInit() { 
+      this.flightService.flightListChange$.subscribe(selected => {
+          this.loadFlights();
+      }); 
+  }
+
+  loadFlights() {
+      this.flightService.getFlights().subscribe(data => { 
           if (data != null) {
               this.flights = data;
-              console.log(data);
-              this.dataSource = new MatTableDataSource<Flight>(this.flights);
-          } 
+              this.filteredFlights = data;
+               this.dataSource = new MatTableDataSource<Flight>(this.filteredFlights);
+          }
       });
   }
 
+  filterFlights() {
+      this._showAvailableFlights = !this._showAvailableFlights;
+      if (this.showAvailableFlights) {
+          this.filteredFlights = this.flights.filter((flight) =>  
+              flight.availableSeats > 0 );
+      } else {
+          this.filteredFlights = this.flights;
+       }
+       this.dataSource = new MatTableDataSource<Flight>(this.filteredFlights);
+  }
 }
