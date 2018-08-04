@@ -11,12 +11,18 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var material_1 = require("@angular/material");
+var flight_details_dialog_component_1 = require("../flight-details-dialog/flight-details-dialog.component");
 var ToolbarComponent = /** @class */ (function () {
     function ToolbarComponent(dialog) {
         this.dialog = dialog;
         this.toggleSidenav = new core_1.EventEmitter();
     }
     ToolbarComponent.prototype.ngOnInit = function () {
+    };
+    ToolbarComponent.prototype.openFlightDetailsDialog = function () {
+        this.dialog.open(flight_details_dialog_component_1.FlightDetailsDialogComponent, {
+            width: '50%',
+        });
     };
     __decorate([
         core_1.Output(),

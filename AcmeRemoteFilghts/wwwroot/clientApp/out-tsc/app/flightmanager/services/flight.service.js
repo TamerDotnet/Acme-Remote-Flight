@@ -12,22 +12,30 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var rxjs_1 = require("rxjs");
 var http_1 = require("@angular/common/http");
+var operators_1 = require("rxjs/operators");
 var FlightService = /** @class */ (function () {
     function FlightService(http) {
         this.http = http;
-        this.flightsUrl = 'http://localhost:3235/api/flight?numberOfTicketsRequested=2&StartDate=06-01-2018&EndDate=06-30-2018';
-        this.dataStore = { flights: [] };
-        this._flights = new rxjs_1.BehaviorSubject([]);
+        this.flightsUrl = 'http://localhost:3235/api/flight/Getflight?numberOfTicketsRequested=2&StartDate=06-01-2018&EndDate=12-30-2018';
+        this.saveFlightUrl = 'http://localhost:3235/api/flight/SaveFlight';
+        this.flightSource = new rxjs_1.BehaviorSubject(null);
+        this.flightListChange$ = this.flightSource.asObservable();
     }
-    Object.defineProperty(FlightService.prototype, "flights", {
-        get: function () {
-            return this._flights.asObservable();
-        },
-        enumerable: true,
-        configurable: true
-    });
+    FlightService.prototype.changeFlightList = function (selectedFlight) {
+        this.flightSource.next(selectedFlight);
+    };
     FlightService.prototype.getFlights = function () {
         return this.http.get(this.flightsUrl);
+    };
+    FlightService.prototype.saveFlightDetails = function (flight) {
+        var _this = this;
+        console.log("flight-service: Start posting  ");
+        var headers = new http_1.HttpHeaders().set('content-type', 'application/json');
+        return this.http.post(this.saveFlightUrl, flight, {
+            headers: headers
+        }).pipe(operators_1.tap(function (newFlightData) {
+            _this.changeFlightList(newFlightData);
+        }));
     };
     FlightService = __decorate([
         core_1.Injectable(),

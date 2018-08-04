@@ -17,15 +17,43 @@ var MainContentComponent = /** @class */ (function () {
         this.flightService = flightService;
         this.displayedColumns = ['id', 'cityFrom', 'cityTo', 'departTime', 'availableSeats'];
     }
+    Object.defineProperty(MainContentComponent.prototype, "showAvailableFlights", {
+        get: function () {
+            return this._showAvailableFlights;
+        },
+        set: function (value) {
+            this._showAvailableFlights = value;
+        },
+        enumerable: true,
+        configurable: true
+    });
     MainContentComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        this.flightService.flightListChange$.subscribe(function (selected) {
+            _this.loadFlights();
+        });
+    };
+    MainContentComponent.prototype.loadFlights = function () {
         var _this = this;
         this.flightService.getFlights().subscribe(function (data) {
             if (data != null) {
                 _this.flights = data;
-                console.log(data);
-                _this.dataSource = new material_1.MatTableDataSource(_this.flights);
+                _this.filteredFlights = data;
+                _this.dataSource = new material_1.MatTableDataSource(_this.filteredFlights);
             }
         });
+    };
+    MainContentComponent.prototype.filterFlights = function () {
+        this._showAvailableFlights = !this._showAvailableFlights;
+        if (this.showAvailableFlights) {
+            this.filteredFlights = this.flights.filter(function (flight) {
+                return flight.availableSeats > 0;
+            });
+        }
+        else {
+            this.filteredFlights = this.flights;
+        }
+        this.dataSource = new material_1.MatTableDataSource(this.filteredFlights);
     };
     MainContentComponent = __decorate([
         core_1.Component({

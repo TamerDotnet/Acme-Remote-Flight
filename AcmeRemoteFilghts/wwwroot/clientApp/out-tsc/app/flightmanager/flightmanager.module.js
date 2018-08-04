@@ -18,6 +18,9 @@ var http_1 = require("@angular/common/http");
 var flightmanager_app_component_1 = require("./flightmanager-app.component");
 var material_module_1 = require("../shared/material/material.module");
 var flight_service_1 = require("./services/flight.service");
+var flight_details_dialog_component_1 = require("./components/flight-details-dialog/flight-details-dialog.component");
+var city_service_1 = require("./services/city.service");
+var material_1 = require("@angular/material");
 var routes = [
     {
         path: '',
@@ -50,12 +53,17 @@ var FlightmanagerModule = /** @class */ (function () {
                 flightmanager_app_component_1.FlightmanagerAppComponent,
                 toolbar_component_1.ToolbarComponent,
                 main_content_component_1.MainContentComponent,
-                sidenav_component_1.SidenavComponent
+                sidenav_component_1.SidenavComponent,
+                flight_details_dialog_component_1.FlightDetailsDialogComponent
             ],
             providers: [
-                flight_service_1.FlightService
+                flight_service_1.FlightService,
+                city_service_1.CityService,
+                { provide: material_1.MAT_DATE_LOCALE, useValue: 'en-AU' }
             ],
-            entryComponents: []
+            entryComponents: [
+                flight_details_dialog_component_1.FlightDetailsDialogComponent
+            ],
         })
     ], FlightmanagerModule);
     return FlightmanagerModule;
