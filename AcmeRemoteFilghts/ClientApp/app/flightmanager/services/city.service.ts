@@ -12,7 +12,7 @@ export class CityService {
         { id: 6, cityName: 'Shepparton' },
         { id: 7, cityName: 'Wodonga' }
     ];
-    constructor() { }
+    constructor() { } 
     public getCityList(): City[] {
         return this.cityList;
     }
