@@ -22,7 +22,7 @@ export class FlightService {
     }
 
     constructor(private http: HttpClient) {
-    }
+    } 
 
     getFlights(): Observable<Flight[]> {
         return this.http.get<Flight[]>(this.flightsUrl);
