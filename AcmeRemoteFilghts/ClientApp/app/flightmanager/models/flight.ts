@@ -9,5 +9,5 @@ export class Flight {
     maxPassangers: number;
     availableSeats: number;
     cityFrom: City = new City();
-    cityTo: City = new City();
+    cityTo: City = new City(); 
 }
