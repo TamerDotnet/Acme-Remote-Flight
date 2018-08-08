@@ -7,7 +7,7 @@
 
   <ItemGroup>
     <None Remove="ClientApp\app\flightmanager\flightmanager.module.ts" />
-    <None Remove="ClientApp\app\flightmanager\models\City.ts" />
+    <None Remove="ClientApp\app\flightmanager\Models\City.ts" />
   </ItemGroup>
 
   <ItemGroup>
@@ -35,7 +35,7 @@
 
   <ItemGroup>
     <TypeScriptCompile Include="ClientApp\app\flightmanager\flightmanager.module.ts" />
-    <TypeScriptCompile Include="ClientApp\app\flightmanager\models\City.ts" />
+    <TypeScriptCompile Include="ClientApp\app\flightmanager\Models\City.ts" />
   </ItemGroup>
 
 </Project>
