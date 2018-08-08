@@ -27,7 +27,6 @@ export class FlightService {
     getFlights(): Observable<Flight[]> {
         return this.http.get<Flight[]>(this.flightsUrl);
     }
-
     saveFlightDetails(flight: Flight): Observable<Flight> {
         console.log("flight-service: Start posting  ");
         const headers = new HttpHeaders().set('content-type', 'application/json');

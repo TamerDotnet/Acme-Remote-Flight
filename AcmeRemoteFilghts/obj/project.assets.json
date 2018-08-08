@@ -13402,11 +13402,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\NET\\Acme\\Acme\\AcmeRemoteFilghts\\AcmeRemoteFilghts.csproj",
+      "projectUniqueName": "C:\\NET\\Samples\\Github\\Acme-Remote-Flight\\AcmeRemoteFilghts\\AcmeRemoteFilghts.csproj",
       "projectName": "AcmeRemoteFilghts",
-      "projectPath": "C:\\NET\\Acme\\Acme\\AcmeRemoteFilghts\\AcmeRemoteFilghts.csproj",
+      "projectPath": "C:\\NET\\Samples\\Github\\Acme-Remote-Flight\\AcmeRemoteFilghts\\AcmeRemoteFilghts.csproj",
       "packagesPath": "C:\\Users\\ibrahit\\.nuget\\packages\\",
-      "outputPath": "C:\\NET\\Acme\\Acme\\AcmeRemoteFilghts\\obj\\",
+      "outputPath": "C:\\NET\\Samples\\Github\\Acme-Remote-Flight\\AcmeRemoteFilghts\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
