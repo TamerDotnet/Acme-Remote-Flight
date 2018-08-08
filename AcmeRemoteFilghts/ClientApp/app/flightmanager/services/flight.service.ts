@@ -16,7 +16,7 @@ export class FlightService {
 
     private flightSource = new BehaviorSubject<Flight>(null);
     flightListChange$ = this.flightSource.asObservable();
-
+     
     changeFlightList(selectedFlight: Flight | null): void {
         this.flightSource.next(selectedFlight);
     }
