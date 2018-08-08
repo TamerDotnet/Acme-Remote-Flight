@@ -9,7 +9,7 @@ export class FlightmanagerAppComponent implements OnInit {
 
   constructor() { } 
 
-  ngOnInit() {
+  ngOnInit() { 
   }
 
 }
