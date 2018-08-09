@@ -39,7 +39,6 @@ namespace AcmeRemoteFilghts.Controllers
         [HttpPost]
         public IActionResult AddNewFlight([FromBody] FlightViewModel flight)
         {
-            
             if (flight == null)
                 return BadRequest();
            
