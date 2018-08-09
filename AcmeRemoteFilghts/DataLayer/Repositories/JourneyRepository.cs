@@ -73,13 +73,16 @@ namespace AcmeRemoteFilghts.DataLayer.Repositories
             return flight;
         }
 
-        public void DeleteFlight(Flight flight)
+        
+
+        public bool DeleteFlight(int Id)
         {
-            if (flight == null)
-                throw new ArgumentNullException(nameof(flight));
+            bool deleted = false;
+
+           var flight =  this._flightRepository.GetById(Id);
 
             this._flightRepository.Delete(flight);
-
+            return deleted;
         }
     }
 }
