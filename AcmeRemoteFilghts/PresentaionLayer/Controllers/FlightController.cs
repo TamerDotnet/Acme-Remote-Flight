@@ -42,7 +42,7 @@ namespace AcmeRemoteFilghts.Controllers
             
             if (flight == null)
                 return BadRequest();
-
+           
             flight.Id = _flightService.AddNewFlight(flight.MapTo<Flight>());
             if (flight.Id == 0)
                 return StatusCode(500, "A Problem happend with handling your request.");
