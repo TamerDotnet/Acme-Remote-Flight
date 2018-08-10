@@ -63,7 +63,25 @@ namespace AcmeRemoteFilghts.Controllers
                 return StatusCode(500, "A Problem happend with handling your request.");
             }
             return CreatedAtRoute("GetFlight", new { id = flight.Id });
+        }
 
+        [HttpPut("{Id}")]
+        public IActionResult UpdateFlight(int Id , [FromBody] FlightViewModel flightModel)
+        {
+            if (flightModel == null)
+                return BadRequest();
+            var aFlight = _flightService.GetFlightById(Id);
+            if (aFlight == null)
+                return NotFound();
+
+            aFlight = flightModel.ToEntity();
+            bool saved = _flightService.UpdateExistingFlight(aFlight);
+            if (!saved)
+            {
+                //do logging
+               return StatusCode(500, $"Updating flight {Id} failed on save operation.");
+            }
+            return NoContent();
         }
 
         [HttpDelete("{FlightId}")]

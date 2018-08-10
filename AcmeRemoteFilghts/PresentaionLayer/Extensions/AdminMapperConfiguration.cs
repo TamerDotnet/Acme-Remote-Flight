@@ -14,16 +14,16 @@ namespace AcmeRemoteFilghts.PresentaionLayer.Extensions
         {
             CreateMap<FlightResourceParameters, Flight>()
                 .ForMember(dest => dest.CityFrom, mo => mo.Ignore())
-                .ForMember(dest => dest.CityTo, mo => mo.Ignore())
-                .ForMember(dest => dest.DepartTime, mo => mo.Ignore())
-                .ForMember(dest => dest.MaxPassangers, mo => mo.Ignore());
+                .ForMember(dest => dest.CityTo, mo => mo.Ignore());
+            //.ForMember(dest => dest.DepartTime, mo => mo.Ignore())
+            //.ForMember(dest => dest.MaxPassangers, mo => mo.Ignore());
 
 
             CreateMap<FlightViewModel, Flight>()
                 .ForMember(dest => dest.CityFrom, mo => mo.Ignore())
-                 .ForMember(dest => dest.CityTo, mo => mo.Ignore())
-                .ForMember(dest => dest.DepartTime, mo => mo.Ignore())
-                .ForMember(dest => dest.MaxPassangers, mo => mo.Ignore());
+                 .ForMember(dest => dest.CityTo, mo => mo.Ignore());
+                //.ForMember(dest => dest.DepartTime, mo => mo.Ignore())
+                //.ForMember(dest => dest.MaxPassangers, mo => mo.Ignore());
         }
 
         public int Order => 0;

@@ -81,8 +81,10 @@ namespace ExamDesigner.Data
             try
             {
                 if (entity == null)
-                    throw new ArgumentNullException(nameof(entity)); 
-                
+                    throw new ArgumentNullException(nameof(entity));
+
+                _context.Entry(entity).State = EntityState.Modified;
+
                _context.SaveChanges();
             }
             catch (InvalidOperationException dbEx)
