@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace AcmeRemoteFilghts.CoreLayer.Extensions
 {
-    public static class MappingExtensions
+    public static class AutoMapperConfiguration
     {
         public static IMapper Mapper { get; private set; }
 
@@ -51,6 +51,5 @@ namespace AcmeRemoteFilghts.CoreLayer.Extensions
         }
 
     }
-
 
 }

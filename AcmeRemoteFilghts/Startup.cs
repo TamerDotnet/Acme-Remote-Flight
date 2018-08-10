@@ -5,7 +5,7 @@ using AcmeRemoteFilghts.CoreLayer.SourceValidators;
 using AcmeRemoteFilghts.DataLayer;
 using AcmeRemoteFilghts.DataLayer.Entities;
 using AcmeRemoteFilghts.DataLayer.Repositories;
-using AcmeRemoteFilghts.PresentaionLayer.Extensions;
+using AcmeRemoteFilghts.CoreLayer.Extensions;
 using AcmeRemoteFilghts.ServiceLayer.Flights;
 using AutoMapper;
 using ExamDesigner.Data;
@@ -93,7 +93,7 @@ namespace AcmeRemoteFilghts
             services.AddSingleton(mapper);
 
             //register
-            MappingExtensions.Init(config);
+            AutoMapperConfiguration.Init(config);
 
             //1- Add CORS =========================================
             services.AddCors(options =>

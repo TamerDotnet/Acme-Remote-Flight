@@ -57,6 +57,10 @@ namespace AcmeRemoteFilghts.ServiceLayer.Flights
             return deleted;
         }
 
+        public Flight GetFlightById(int FlightId)
+        {
+           return this._journeyRepository.GetExistingFlight(FlightId);
+        }
         public ICollection<Flight> GetAvailableFlightsByDate(FlightResourceParameters flightResourceParameters)
         {
             // Get list of flights within that Date range and requested number of tickets
