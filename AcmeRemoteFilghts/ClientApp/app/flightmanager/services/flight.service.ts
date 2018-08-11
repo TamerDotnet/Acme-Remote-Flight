@@ -11,8 +11,8 @@ import { Flight } from '../models/flight';
 @Injectable()
 export class FlightService {
 
-    private flightsUrl = 'http://localhost:3235/api/flight/Getflight?numberOfTicketsRequested=2&StartDate=06-01-2018&EndDate=12-30-2018';
-    private saveFlightUrl = 'http://localhost:3235/api/flight/SaveFlight';
+    private flightsUrl = 'http://localhost:3235/api/flight?numberOfTicketsRequested=2&StartDate=06-01-2018&EndDate=12-30-2018';
+    private saveFlightUrl = 'http://localhost:3235/api/flight';
 
     private flightSource = new BehaviorSubject<Flight>(null);
     flightListChange$ = this.flightSource.asObservable();

@@ -1,15 +1,13 @@
-﻿using AcmeRemoteFilghts.CoreLayer.Parameters;
-using AcmeRemoteFilghts.DataLayer.Entities;
-using AcmeRemoteFilghts.CoreLayer.Extensions;
+﻿using AcmeRemoteFilghts.CoreLayer.Extensions;
+using AcmeRemoteFilghts.CoreLayer.Parameters;
 using AcmeRemoteFilghts.PresentaionLayer.Extensions;
-using AcmeRemoteFilghts.PresentaionLayer.Helpers;
 using AcmeRemoteFilghts.PresentaionLayer.Models;
 using AcmeRemoteFilghts.ServiceLayer.Flights;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
-using Microsoft.Extensions.Logging;
 
 namespace AcmeRemoteFilghts.Controllers
 {
