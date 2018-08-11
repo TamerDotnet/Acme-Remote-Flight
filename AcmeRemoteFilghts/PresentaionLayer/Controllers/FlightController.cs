@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
+using Microsoft.Extensions.Logging;
 
 namespace AcmeRemoteFilghts.Controllers
 {
@@ -18,9 +19,11 @@ namespace AcmeRemoteFilghts.Controllers
     public class FlightController : Controller
     {
         private readonly IFlightService _flightService;
-        public FlightController(IFlightService flightService)
+        private ILogger<FlightController> _logger;
+        public FlightController(IFlightService flightService, ILogger<FlightController> logger)
         {
             this._flightService = flightService;
+            this._logger = logger;
         }
         [EnableCors("CORS")]
         [HttpGet(Name = "GetFlight")]
@@ -29,8 +32,11 @@ namespace AcmeRemoteFilghts.Controllers
             if (param == null)
                 return BadRequest();
 
+            // throw new ApplicationException("Sorry did load by mistake");
             if (!ModelState.IsValid) // return 422
                 return new AcmeRemoteFilghts.PresentaionLayer.Helpers.UnprocessableResult(ModelState);
+
+            _logger.LogCritical("******************Start Loading******************************");
 
             List<FlightViewModel> list = new List<FlightViewModel>();
             try
@@ -75,6 +81,7 @@ namespace AcmeRemoteFilghts.Controllers
                 return NotFound();
 
             aFlight = flightModel.ToEntity();
+            aFlight.Id = Id;
             bool saved = _flightService.UpdateExistingFlight(aFlight);
             if (!saved)
             {
