@@ -44,12 +44,12 @@ namespace AcmeRemoteFilghts.Controllers
             }
             catch (Exception ex)
             {
-
+                _logger.LogCritical("Could do not load flights from database", ex);
+                return StatusCode(500, "Could do not load flights from database");
             }
-
-
             return Ok(list);
         }
+
         [EnableCors("CORS")]
         [HttpPost]
         public IActionResult AddNewFlight([FromBody] FlightViewModel flight)

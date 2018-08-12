@@ -27,15 +27,26 @@ export class FlightService {
     getFlights(): Observable<Flight[]> {
         return this.http.get<Flight[]>(this.flightsUrl);
     }
-
+     
     saveFlightDetails(flight: Flight): Observable<Flight> {
-        console.log("flight-service: Start posting  ");
         const headers = new HttpHeaders().set('content-type', 'application/json');
-        return this.http.post<Flight>(this.saveFlightUrl, flight, {
-            headers
-        }).pipe(
-            tap(newFlightData => {
-                this.changeFlightList(newFlightData);
-            }))
+        if (flight.id == 0)
+            return this.http.post<Flight>(this.saveFlightUrl, flight, {
+                headers
+            }).pipe(
+                tap(newFlightData => {
+                    this.changeFlightList(newFlightData);
+                }));
+        else {
+            var updateUrl = this.saveFlightUrl + "/" + flight.id;
+            console.log("Update URL IS: " + updateUrl);
+
+            return this.http.put<Flight>(updateUrl, flight, {
+                headers
+            }).pipe(
+                tap(newFlightData => {
+                    this.changeFlightList(newFlightData);
+                }));
+        }
     }
 }

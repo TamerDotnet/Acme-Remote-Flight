@@ -44,11 +44,12 @@
             </mat-form-field>
 
             <mat-form-field>
-                <mat-select [(value)]="selected" placeholder="Maximum Passangers" [(ngModel)]="flight.maxPassangers" 
-                            name="maxPassangers"  #maxPassangers="ngModel" required>
-                    <mat-option value="5">5</mat-option>
-                    <mat-option value="10">10</mat-option>
-                    <mat-option value="20">20</mat-option>
+                <mat-select [(value)]="selected" placeholder="Maximum Passangers" [(ngModel)]="flight.maxPassangers"
+                            name="maxPassangers" #maxPassangers="ngModel" required>
+                     
+                    <mat-option *ngFor="let maxNum of maxNumbersList" [value]="maxNum">
+                        {{maxNum}}
+                    </mat-option> 
                 </mat-select>
                 <div *ngIf="maxPassangers.invalid && maxPassangers.touched" class="alert alert-danger">
                     Maximum Passangers is required.
@@ -60,7 +61,7 @@
 
 </mat-dialog-content>
 <mat-dialog-actions>
-    <button mat-button color="primary" #btnSave  [disabled]="form.invalid" (click)="saveFlightDetails(flight)">
+    <button mat-button class="btn-form" #btnSave  [disabled]="form.invalid" (click)="saveFlightDetails(flight)">
         <mat-icon></mat-icon>Save
     </button>
     <button mat-button color="primary"  (click)="closeDialog()">
