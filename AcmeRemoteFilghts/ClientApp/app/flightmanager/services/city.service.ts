@@ -12,9 +12,13 @@ export class CityService {
         { id: 6, cityName: 'Shepparton' },
         { id: 7, cityName: 'Wodonga' }
     ];
-    constructor() { } 
+      maxNumbersList: number[] = [5,10,15,20,25,30];
+    constructor() { }
     public getCityList(): City[] {
         return this.cityList;
+    }
+    public getFlightMaxNumberList(): number[] {
+        return this.maxNumbersList;
     }
 
 }

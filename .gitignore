@@ -21,11 +21,14 @@ bld/
 [Bb]in/
 [Oo]bj/
 [Ll]og/
+bin
+obj
+.vs
 
 # Visual Studio 2015 cache/options directory
 .vs/
 # Uncomment if you have tasks that create the project's static files in wwwroot
-#wwwroot/
+wwwroot/
 
 # MSTest test Results
 [Tt]est[Rr]esult*/
@@ -193,6 +196,7 @@ ClientBin/
 *.pfx
 *.publishsettings
 node_modules/
+wwwroot/
 orleans.codegen.cs
 
 # Since there are multiple workflows, uncomment next line to ignore bower_components
@@ -211,8 +215,8 @@ UpgradeLog*.XML
 UpgradeLog*.htm
 
 # SQL Server files
-*.mdf
-*.ldf
+#*.mdf
+#*.ldf
 
 # Business Intelligence projects
 *.rdl.data
@@ -241,6 +245,9 @@ FakesAssemblies/
 **/*.Server/GeneratedArtifacts
 **/*.Server/ModelManifest.xml
 _Pvt_Extensions
+
+ 
+
 
 # Paket dependency manager
 .paket/paket.exe

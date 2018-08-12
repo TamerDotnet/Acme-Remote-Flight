@@ -1,9 +1,12 @@
 ﻿using AcmeRemoteFilghts.CoreLayer.Data;
+using AcmeRemoteFilghts.PresentaionLayer.Validators;
+using FluentValidation.Attributes;
 using System;
 using System.Collections.Generic;
 
 namespace AcmeRemoteFilghts.PresentaionLayer.Models
 {
+    [Validator(typeof(FlightViewModelValidator))]
     public class FlightViewModel:BaseEntity
     {
         public CityViewModel CityFrom { get; set; }

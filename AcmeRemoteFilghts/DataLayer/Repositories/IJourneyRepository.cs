@@ -14,6 +14,6 @@ namespace AcmeRemoteFilghts.DataLayer.Repositories
         Flight GetExistingFlight(int FlightId);
         Flight InsertFlight(Flight flight);
         Flight UpdateFlight(Flight flight);
-        void DeleteFlight(Flight flight);
+        bool DeleteFlight(int Id);
     }
 }
