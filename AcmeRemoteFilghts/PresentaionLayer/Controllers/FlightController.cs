@@ -57,13 +57,16 @@ namespace AcmeRemoteFilghts.Controllers
             if (flight == null)
                 return BadRequest();
 
+            if (!ModelState.IsValid)
+                return new UnprocessableEntityObjectResult(ModelState);
+
             try
             {
                 flight.Id = _flightService.AddNewFlight(flight.ToEntity());
             }
             catch (Exception ex)
             {
-                //add logger here
+                _logger.LogCritical("Could not add new flight details.", ex);
                 return StatusCode(500, "A Problem happend with handling your request.");
             }
             return CreatedAtRoute("GetFlight", new { id = flight.Id });
@@ -74,6 +77,11 @@ namespace AcmeRemoteFilghts.Controllers
         {
             if (flightModel == null)
                 return BadRequest();
+
+            // check if model state which include the flight business rules(FlightViewModelValidators) are all valid
+            if (!ModelState.IsValid)
+                return new UnprocessableEntityObjectResult(ModelState);
+
             var aFlight = _flightService.GetFlightById(Id);
             if (aFlight == null)
                 return NotFound();
@@ -83,8 +91,8 @@ namespace AcmeRemoteFilghts.Controllers
             bool saved = _flightService.UpdateExistingFlight(aFlight);
             if (!saved)
             {
-                //do logging
-               return StatusCode(500, $"Updating flight {Id} failed on save operation.");
+                _logger.LogCritical("Could not update flight details.");
+                return StatusCode(500, $"Updating flight {Id} failed on save operation.");
             }
             return NoContent();
         }
@@ -92,6 +100,9 @@ namespace AcmeRemoteFilghts.Controllers
         [HttpDelete("{FlightId}")]
         public IActionResult DeleteFlight(int FlightId)
         {
+            if (!ModelState.IsValid)
+                return new UnprocessableEntityObjectResult(ModelState);
+
             var aFlight = _flightService.GetFlightById(FlightId);
             if (aFlight == null)
                 return NotFound();
@@ -103,7 +114,7 @@ namespace AcmeRemoteFilghts.Controllers
             }
             catch (Exception ex)
             {
-                // log the exception error
+                 _logger.LogCritical("Could not delete flight details.", ex);
                 return StatusCode(500, "A Database Problem happend with delete a flight.");
             }
             if (!deleted)

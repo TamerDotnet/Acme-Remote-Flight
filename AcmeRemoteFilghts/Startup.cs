@@ -21,6 +21,8 @@ using System;
 using System.Linq;
 using Microsoft.AspNetCore.Diagnostics;
 using NLog.Extensions.Logging;
+using AcmeRemoteFilghts.PresentaionLayer.Validators;
+using AcmeRemoteFilghts.PresentaionLayer.Models;
 
 namespace AcmeRemoteFilghts
 {
@@ -52,6 +54,8 @@ namespace AcmeRemoteFilghts
             // Register the services 
             services.AddScoped<IFlightService, FlightService>();
             services.AddTransient<IValidator<FlightResourceParameters>, FlightResourceValidators>();
+            services.AddTransient<IValidator<FlightViewModel>, FlightViewModelValidator>();
+
 
             var typeFinder = new WebAppTypeFinder();
             AddAutoMapper(services, typeFinder);
