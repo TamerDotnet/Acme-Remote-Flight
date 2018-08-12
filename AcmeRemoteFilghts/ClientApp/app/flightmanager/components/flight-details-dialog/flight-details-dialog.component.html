@@ -3,48 +3,68 @@
 </h2>
 
 <mat-dialog-content>
-    <div class="example-container">
-        <mat-form-field>
-            <input matInput [matDatepicker]="dateFrom" placeholder="Depart Date" [(ngModel)]="flight.departTime">
-            <mat-datepicker-toggle matSuffix [for]="dateFrom"></mat-datepicker-toggle>
-            <mat-datepicker #dateFrom></mat-datepicker>
-        </mat-form-field>
-        <mat-form-field>
-            <input matInput [matDatepicker]="dateTo" placeholder="Arrival Date" [(ngModel)]="flight.arriveTime">
-            <mat-datepicker-toggle matSuffix [for]="dateTo"></mat-datepicker-toggle>
-            <mat-datepicker #dateTo></mat-datepicker>
-        </mat-form-field>
-        <mat-form-field>
-            <mat-select placeholder="City From" [(ngModel)]="flight.cityFrom.id" name="cityFrom">
-                <mat-option *ngFor="let city of cityList" [value]="city.id">
-                    {{city.cityName}}
-                </mat-option>
-            </mat-select>
-        </mat-form-field>
+    <form #form="ngForm" name="flightForm" novalidate>
+        <div class="example-container">
+            <mat-form-field [class.has-error]="departTime.invalid && departTime.touched">
+                <input matInput name="dateFrom" [matDatepicker]="dateFrom" placeholder="Departure Date" [(ngModel)]="flight.departTime" #departTime="ngModel" required>
+                <mat-datepicker-toggle matSuffix [for]="dateFrom"></mat-datepicker-toggle>
+                <mat-datepicker #dateFrom></mat-datepicker>
+                <div *ngIf="departTime.invalid && departTime.touched" class="alert alert-danger">
+                    Departure Date is required.
+                </div> 
+            </mat-form-field>
+            <mat-form-field>
+                <input matInput name="datetoCtrl" [matDatepicker]="dateTo" placeholder="Arrival Date" [(ngModel)]="flight.arriveTime"  #arriveTime="ngModel" required>
+                <mat-datepicker-toggle matSuffix [for]="dateTo"></mat-datepicker-toggle>
+                <mat-datepicker #dateTo></mat-datepicker>
+                <div *ngIf="arriveTime.invalid && arriveTime.touched" class="alert alert-danger">
+                    Arrive Date is required.
+                </div>
+            </mat-form-field>
+            <mat-form-field>
+                <mat-select placeholder="City From" [(ngModel)]="flight.cityFrom.id" name="cityFrom" #cityFrom="ngModel" required>
+                    <mat-option *ngFor="let city of cityList" [value]="city.id">
+                        {{city.cityName}}
+                    </mat-option>
+                </mat-select>
+                <div *ngIf="cityFrom.invalid && cityFrom.touched" class="alert alert-danger">
+                    City From is required.
+                </div>
+            </mat-form-field>
 
-        <mat-form-field>
-            <mat-select placeholder="City To" [(ngModel)]="flight.cityTo.id" name="cityTo">
-                <mat-option *ngFor="let city of cityList" [value]="city.id">
-                    {{city.cityName}}
-                </mat-option>
-            </mat-select>
-        </mat-form-field>
+            <mat-form-field>
+                <mat-select placeholder="City To" [(ngModel)]="flight.cityTo.id" name="cityTo"  #cityTo="ngModel" required>
+                    <mat-option *ngFor="let city of cityList" [value]="city.id">
+                        {{city.cityName}}
+                    </mat-option>
+                </mat-select>
+                <div *ngIf="cityTo.invalid && cityTo.touched" class="alert alert-danger">
+                    City To is required.
+                </div>
+            </mat-form-field>
 
-        <mat-form-field>
-            <mat-select [(value)]="selected" placeholder="Maximum Passangers" [(ngModel)]="flight.maxPassangers" name="maxPassangers">
-                <mat-option value="5">5</mat-option>
-                <mat-option value="10">10</mat-option>
-                <mat-option value="20">20</mat-option>
-            </mat-select>
-        </mat-form-field>
-    </div>
+            <mat-form-field>
+                <mat-select [(value)]="selected" placeholder="Maximum Passangers" [(ngModel)]="flight.maxPassangers" 
+                            name="maxPassangers"  #maxPassangers="ngModel" required>
+                    <mat-option value="5">5</mat-option>
+                    <mat-option value="10">10</mat-option>
+                    <mat-option value="20">20</mat-option>
+                </mat-select>
+                <div *ngIf="maxPassangers.invalid && maxPassangers.touched" class="alert alert-danger">
+                    Maximum Passangers is required.
+                </div>
+            </mat-form-field>
+        </div>
+    </form>
+
 
 </mat-dialog-content>
 <mat-dialog-actions>
-    <button mat-button color="primary" (click)="saveFlightDetails(flight)">
+    <button mat-button color="primary" #btnSave  [disabled]="form.invalid" (click)="saveFlightDetails(flight)">
         <mat-icon></mat-icon>Save
     </button>
-    <button mat-button color="primary" (click)="closeDialog()">
+    <button mat-button color="primary"  (click)="closeDialog()">
         <mat-icon></mat-icon>Cancel
     </button>
+    <h4>{{dateFrom.className}}</h4>
 </mat-dialog-actions>

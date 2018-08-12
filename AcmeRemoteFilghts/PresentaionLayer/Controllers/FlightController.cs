@@ -50,7 +50,7 @@ namespace AcmeRemoteFilghts.Controllers
 
             return Ok(list);
         }
-
+        [EnableCors("CORS")]
         [HttpPost]
         public IActionResult AddNewFlight([FromBody] FlightViewModel flight)
         {
@@ -69,9 +69,10 @@ namespace AcmeRemoteFilghts.Controllers
                 _logger.LogCritical("Could not add new flight details.", ex);
                 return StatusCode(500, "A Problem happend with handling your request.");
             }
-            return CreatedAtRoute("GetFlight", new { id = flight.Id });
+            return CreatedAtRoute("GetFlight", new { flightId = flight.Id });
         }
 
+        [EnableCors("CORS")]
         [HttpPut("{Id}")]
         public IActionResult UpdateFlight(int Id , [FromBody] FlightViewModel flightModel)
         {
@@ -97,6 +98,7 @@ namespace AcmeRemoteFilghts.Controllers
             return NoContent();
         }
 
+        [EnableCors("CORS")]
         [HttpDelete("{FlightId}")]
         public IActionResult DeleteFlight(int FlightId)
         {

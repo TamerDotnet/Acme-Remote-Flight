@@ -1,5 +1,5 @@
-import { Component, OnInit, Inject } from '@angular/core';
- import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material";
+import { Component, OnInit, Inject, Input } from '@angular/core';
+ import { MAT_DIALOG_DATA, MatDialogRef, MatButton } from "@angular/material";
 import { Flight } from '../../models/flight';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FlightService } from '../../services/flight.service';
@@ -12,7 +12,7 @@ import { City } from '../../models/City';
   styleUrls: ['./flight-details-dialog.component.scss']
 })
 export class FlightDetailsDialogComponent implements OnInit {
-    public cityList: City[]; 
+    public cityList: City[];  
 
     flight: Flight;
     constructor(private route: ActivatedRoute, private flightService: FlightService, private cityService:CityService, 
@@ -33,9 +33,10 @@ export class FlightDetailsDialogComponent implements OnInit {
 
     
     saveFlightDetails(fightDetails: Flight) {   
+    
       this.flightService.saveFlightDetails(fightDetails).subscribe(res => {
-           this.flightService.changeFlightList(res);
-           this.dialogRef.close();
+          this.flightService.changeFlightList(res);
+                this.dialogRef.close();
       });
     }
     closeDialog() {
