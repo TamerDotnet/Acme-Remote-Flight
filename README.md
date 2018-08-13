@@ -15,8 +15,8 @@ A Sample Main page built with Angular - Material design as showing below:
 
 ![alt test](https://github.com/TamerDotnet/Acme-Remote-Flight/blob/master/Acme_ClientApp.png)
 
-=============================================================================================
-Added a Dialog Box to add new flights to the list as showing below:
+======================================================================
+To update a flight details , user can update the details as showing below:
 
 ![alt test](https://github.com/TamerDotnet/Acme-Remote-Flight/blob/master/FlightDetails.gif)
 
