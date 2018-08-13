@@ -33,7 +33,8 @@ namespace ExamDesigner.Data
        
         public virtual T GetById(object id )
         {
-               return Entities.Find(id);
+            //return Entities.Find(id);
+            return Entities.AsNoTracking().SingleOrDefault(x => x.Id == (int)id);
         }
         public IEnumerable<T> QueryObjectGraph(Expression<Func<T, bool>> filter, string children)
         {
@@ -81,8 +82,13 @@ namespace ExamDesigner.Data
             try
             {
                 if (entity == null)
-                    throw new ArgumentNullException(nameof(entity)); 
-                
+                    throw new ArgumentNullException(nameof(entity));
+
+                _context.Update(entity);
+                //_context.Entry(entity).State = EntityState.Detached;
+
+                //_context.Entry(entity).State = EntityState.Modified;
+
                _context.SaveChanges();
             }
             catch (InvalidOperationException dbEx)

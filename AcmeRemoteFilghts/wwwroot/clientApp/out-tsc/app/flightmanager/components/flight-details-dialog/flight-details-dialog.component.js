@@ -32,10 +32,17 @@ var FlightDetailsDialogComponent = /** @class */ (function () {
         else {
             this.flight = data;
         }
+<<<<<<< HEAD
         console.log(JSON.stringify(data));
     }
     FlightDetailsDialogComponent.prototype.ngOnInit = function () {
         this.cityList = this.cityService.getCityList();
+=======
+    }
+    FlightDetailsDialogComponent.prototype.ngOnInit = function () {
+        this.cityList = this.cityService.getCityList();
+        this.maxNumbersList = this.cityService.getFlightMaxNumberList();
+>>>>>>> 15785cd0aa6342a6244f5581cd99a1e5fd798ffb
     };
     FlightDetailsDialogComponent.prototype.saveFlightDetails = function (fightDetails) {
         var _this = this;

@@ -1,56 +1,34 @@
-﻿using AutoMapper;
+﻿using AcmeRemoteFilghts.CoreLayer.Extensions;
+using AcmeRemoteFilghts.DataLayer.Entities;
+using AcmeRemoteFilghts.PresentaionLayer.Models;
 using System;
-using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace AcmeRemoteFilghts.PresentaionLayer.Extensions
 {
     public static class MappingExtensions
     {
-        public static IMapper Mapper { get; private set; }
-
-        /// <summary>
-        /// Mapper configuration
-        /// </summary>
-        public static MapperConfiguration MapperConfiguration { get; private set; }
-
-        /// <summary>
-        /// Initialize mapper
-        /// </summary>
-        /// <param name="config">Mapper configuration</param>
-        public static void Init(MapperConfiguration config)
+        public static TDestination MapTo<TSource, TDestination>(this TSource source)
         {
-            MapperConfiguration = config;
-            Mapper = config.CreateMapper();
+            return AutoMapperConfiguration.Mapper.Map<TSource, TDestination>(source);
         }
-        /// <summary>
-        /// Set to set
-        /// </summary>
-        /// <typeparam name="TResult"></typeparam>
-        /// <param name="self"></param>
-        /// <returns></returns>
-        public static List<TResult> MapTo<TResult>(this IEnumerable self)
+
+        public static TDestination MapTo<TSource, TDestination>(this TSource source, TDestination destination)
         {
-            if (self == null)
-                throw new ArgumentNullException();
-            Mapper.Map(self.GetType(), typeof(TResult));
-              return (List<TResult>)Mapper.Map(self, self.GetType(), typeof(List<TResult>));
+            return AutoMapperConfiguration.Mapper.Map(source, destination);
         }
-        /// <summary>
-        /// Object to object
-        /// </summary>
-        /// <typeparam name="TResult"></typeparam>
-        /// <param name="self"></param>
-        /// <returns></returns>
-        public static TResult MapTo<TResult>(this object self)
+
+        public static FlightViewModel ToModel(this Flight entity)
         {
-            if (self == null)
-                throw new ArgumentNullException();
-            Mapper.Map(self.GetType(), typeof(TResult));
-            return (TResult)Mapper.Map(self, self.GetType(), typeof(TResult));
+            return entity.MapTo<Flight, FlightViewModel>();
+        }
+        public static Flight ToEntity(this FlightViewModel entity)
+        {
+            return entity.MapTo<FlightViewModel, Flight>();
         }
 
     }
 
-   
 }

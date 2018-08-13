@@ -25,19 +25,19 @@
                 <mat-cell *matCellDef="let flight"> {{flight.id}} </mat-cell>
             </ng-container>
 
-            <!-- Name Column -->
+            <!-- City Departure Column -->
             <ng-container matColumnDef="cityFrom">
                 <mat-header-cell *matHeaderCellDef> City From </mat-header-cell>
                 <mat-cell *matCellDef="let flight"> {{flight.cityFrom.cityName}} </mat-cell>
             </ng-container>
 
-            <!-- Weight Column -->
+            <!-- City arrival Column -->
             <ng-container matColumnDef="cityTo">
                 <mat-header-cell *matHeaderCellDef> City To </mat-header-cell>
                 <mat-cell *matCellDef="let flight"> {{flight.cityTo.cityName}} </mat-cell>
             </ng-container>
 
-            <!-- Symbol Column -->
+            <!-- Departure time Column -->
             <ng-container matColumnDef="departTime">
                 <mat-header-cell *matHeaderCellDef> Depart Time </mat-header-cell>
                 <mat-cell *matCellDef="let flight">
@@ -49,14 +49,30 @@
             <ng-container matColumnDef="availableSeats">
                 <mat-header-cell *matHeaderCellDef> Available Seats </mat-header-cell>
                 <mat-cell *matCellDef="let flight">
-                    {{flight.availableSeats}} 
+                    {{flight.availableSeats}}
 
                 </mat-cell>
+            </ng-container>
+             
+            <ng-container matColumnDef="update">
+                <mat-header-cell *matHeaderCellDef>Update</mat-header-cell>
+                <mat-cell *matCellDef="let flight" (click)="$event.stopPropagation()">
+                    <button mat-button (click)="openFlightDetailsDialog(flight)">
+                        <mat-icon class="mat-update">update</mat-icon>
+                    </button>
+                </mat-cell>
+            </ng-container>
 
+            <ng-container matColumnDef="delete">
+                <mat-header-cell *matHeaderCellDef>Delete</mat-header-cell>
+                <mat-cell *matCellDef="let flight" (click)="$event.stopPropagation()">
+                    <button mat-button (click)="onDelete(flight.id)">
+                        <mat-icon>delete</mat-icon>
+                    </button>
+                </mat-cell>
             </ng-container>
 
 
-             
             <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
             <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
         </mat-table>

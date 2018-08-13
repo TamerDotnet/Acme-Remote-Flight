@@ -21,9 +21,13 @@ var CityService = /** @class */ (function () {
             { id: 6, cityName: 'Shepparton' },
             { id: 7, cityName: 'Wodonga' }
         ];
+        this.maxNumbersList = [5, 10, 15, 20, 25, 30];
     }
     CityService.prototype.getCityList = function () {
         return this.cityList;
+    };
+    CityService.prototype.getFlightMaxNumberList = function () {
+        return this.maxNumbersList;
     };
     CityService = __decorate([
         core_1.Injectable(),

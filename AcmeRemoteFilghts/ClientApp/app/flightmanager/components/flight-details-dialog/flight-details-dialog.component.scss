@@ -6,3 +6,24 @@
 .example-container > * {
     width: 100%;
 }
+
+element.style {
+}
+ 
+.bd-example > .alert + .alert, .bd-example > .nav + .nav, .bd-example > .navbar + .navbar, .bd-example > .progress + .btn, .bd-example > .progress + .progress {
+    margin-top: 1rem;
+}
+
+.alert-danger {
+    color: #721c24;
+    background-color: #f8d7da;
+    border-color: #f5c6cb;
+}
+
+.alert {
+    position: relative;
+    padding: .75rem 1.25rem;
+    margin-bottom: 1rem;
+    border: 1px solid transparent;
+    border-radius: .25rem;
+}
