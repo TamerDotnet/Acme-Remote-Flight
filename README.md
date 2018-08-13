@@ -13,7 +13,7 @@ Designed as modular and extensible. Provides infrastructure to build your own mo
 
 A Sample Main page built with Angular - Material design as showing below:
 
-![alt test](https://github.com/TamerDotnet/Acme-Remote-Flight/blob/master/Acme_ClientApp.png)
+![alt test](https://github.com/TamerDotnet/Acme-Remote-Flight/blob/master/Acme_ClientApp.gif)
 
 ================================================================================
 
