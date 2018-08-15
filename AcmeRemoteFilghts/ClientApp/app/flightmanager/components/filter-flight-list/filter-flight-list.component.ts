@@ -1,16 +1,19 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { FormBuilder, FormGroup } from '@angular/forms';
+import { Observable } from 'rxjs';
+import { startWith, map } from 'rxjs/operators';
+import { FlightService } from '../../services/flight.service';
+import { Flight } from '../../models/flight';
 
-import { Observable } from 'rxjs/Observable'; 
-import { map } from 'rxjs/operator/map';
-import { startWith } from 'rxjs/operators/startWith';
-
-
-export class State {
-    constructor(public name: string, public population: string, public flag: string) { }
+export interface StateGroup {
+    letter: string;
+    names: string[];
 }
+export const _filter = (opt: string[], value: string): string[] => {
+    const filterValue = value.toLowerCase();
 
-
+    return opt.filter(item => item.toLowerCase().indexOf(filterValue) === 0);
+};
 
 @Component({
     selector: 'app-filter-flight-list',
@@ -18,67 +21,62 @@ export class State {
     styleUrls: ['./filter-flight-list.component.scss']
 })
 export class FilterFlightListComponent implements OnInit {
+    public filteredFlights: Flight[]; 
+    stateForm: FormGroup = this.fb.group({
+        stateGroup: '',
+    });
+    stateGroups: StateGroup[] = [{
+        letter: 'B',
+        names: ['Ballarat', 'Bendigo']
+    }, {
+        letter: 'G',
+        names: ['Geelong']
+    }, {
+        letter: 'M',
+        names: ['Melbourne', 'Melton']
 
-    stateCtrl: FormControl;
-    filteredStates: Observable<any[]>;
-    options: string[] = ['One', 'Two', 'Three'];
+    }, {
+        letter: 'S',
+        names: ['Shepparton']
 
-    ngOnInit(): void {
-        //this.filteredStates = this.stateCtrl.valueChanges
-        //    .pipe(
-        //        startWith(''),
-        //        map(value => this._filter(value))
-        //    );
+    }, {
+        letter: 'W',
+        names: ['Wodonga']
+    }];
+
+    stateGroupOptions: Observable<StateGroup[]>;
+
+    constructor(private fb: FormBuilder, private flightService:FlightService) { }
+
+    ngOnInit() {
+        this.stateGroupOptions = this.stateForm.get('stateGroup')!.valueChanges
+            .pipe(
+                startWith(''),
+                map(value => this._filterGroup(value))
+        );
+        this.loadFlights();
     }
-    private _filter(value: string): string[] {
-        const filterValue = value.toLowerCase();
 
-        return this.options.filter(option => option.toLowerCase().includes(filterValue));
-    }
-     
-    states: State[] = [
-        {
-            name: 'Arkansas',
-            population: '2.978M',
-            // https://commons.wikimedia.org/wiki/File:Flag_of_Arkansas.svg
-            flag: 'https://upload.wikimedia.org/wikipedia/commons/9/9d/Flag_of_Arkansas.svg'
-        },
-        {
-            name: 'California',
-            population: '39.14M',
-            // https://commons.wikimedia.org/wiki/File:Flag_of_California.svg
-            flag: 'https://upload.wikimedia.org/wikipedia/commons/0/01/Flag_of_California.svg'
-        },
-        {
-            name: 'Florida',
-            population: '20.27M',
-            // https://commons.wikimedia.org/wiki/File:Flag_of_Florida.svg
-            flag: 'https://upload.wikimedia.org/wikipedia/commons/f/f7/Flag_of_Florida.svg'
-        },
-        {
-            name: 'Texas',
-            population: '27.47M',
-            // https://commons.wikimedia.org/wiki/File:Flag_of_Texas.svg
-            flag: 'https://upload.wikimedia.org/wikipedia/commons/f/f7/Flag_of_Texas.svg'
+    private _filterGroup(value: string): StateGroup[] {
+        if (value) {
+            return this.stateGroups
+                .map(group => ({ letter: group.letter, names: _filter(group.names, value) }))
+                .filter(group => group.names.length > 0);
         }
-    ];
 
-    constructor() {
-        this.stateCtrl = new FormControl();
+        return this.stateGroups;
+    }
+    private loadFlights() {
+        // load flights from database
+        this.flightService.getFlights().subscribe(data => {
+            if (data != null) {
+                this.filteredFlights = data;
+            }
+        });
     }
 
-
-
-
-    filterStates(name: string) {
-        return this.states.filter(state =>
-            state.name.toLowerCase().indexOf(name.toLowerCase()) === 0);
-    }
-
-    onEnter(evt: any) {
-        if (evt.source.selected) {
-            alert("hello ");
-        }
+    CityFromSelectedEvent(cityName:string) {
+        console.log(cityName);
     }
 
 }

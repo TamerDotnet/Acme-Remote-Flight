@@ -15,6 +15,7 @@ import { FlightService } from './services/flight.service';
 import { FlightDetailsDialogComponent } from './components/flight-details-dialog/flight-details-dialog.component';
 import { CityService } from './services/city.service';
 import { MAT_DATE_LOCALE } from '@angular/material';
+import { FilterFlightListComponent } from './components/filter-flight-list/filter-flight-list.component';
  
 
 let routes: Routes = [
@@ -46,7 +47,8 @@ let routes: Routes = [
         ToolbarComponent,
         MainContentComponent,
         SidenavComponent,
-        FlightDetailsDialogComponent 
+        FlightDetailsDialogComponent,
+        FilterFlightListComponent
     ],
     providers: [
         FlightService,
